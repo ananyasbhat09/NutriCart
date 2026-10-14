@@ -7,6 +7,7 @@ export default function Home() {
     doing some random work
    </div>
  <div> Some new changes by adithi</div>
+ <p>adithi is doing some changes</p>
     </div>
    
   );

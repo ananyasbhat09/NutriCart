@@ -124,7 +124,6 @@ export default function Home() {
   </div>
 )}
 
-
       <Hero/>
 
       <CategoryList
@@ -132,26 +131,27 @@ export default function Home() {
         setSelectedCategory={setCategory}
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {filteredProducts.map((product) => (
-      <ProductCard
+      <div
+  id="products"
+  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12"
+>
+  {filteredProducts.map((product) => (
+    <ProductCard
       key={product.id || product.name}
       product={product}
       onSelect={setSelectedProduct}
       onAdd={addToCart}
     />
-
   ))}
 </div>
-     {selectedProduct && (
-  <>
+
+{selectedProduct && (
+  <div className="flex flex-col gap-10">
     <NutritionPanel product={selectedProduct} />
     <RecipeSuggestions product={selectedProduct} />
-  </>
+  </div>
 )}
-    
     </div>
-   
   );
 
 }

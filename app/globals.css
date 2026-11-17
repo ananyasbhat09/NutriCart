@@ -348,3 +348,46 @@ body {
     font-size: 55px;
   }
 }
+
+/* Light mode */
+.light {
+  background-color: #f8faf7;
+  color: #1f2937;
+  min-height: 100vh;
+}
+
+/* Dark mode */
+.dark {
+  background-color: #111827;
+  color: #f9fafb;
+  min-height: 100vh;
+}
+
+/* Dark mode for cards and panels */
+.dark .product-card,
+.dark .nutrition-panel,
+.dark .recipe-card {
+  background-color: #1f2937;
+  color: #f9fafb;
+}
+
+/* Dark mode for text */
+.dark .muted-text {
+  color: #d1d5db;
+}
+
+/* Light mode hero */
+.app-shell[data-theme="light"] .hero {
+  background:
+    radial-gradient(circle at 85% 50%, #bbf7d0 0%, transparent 35%),
+    linear-gradient(120deg, #ecfdf5, #f0fdf4, #eff6ff);
+}
+
+.app-shell[data-theme="light"] .hero p {
+  color: #475569;
+}
+
+/* Light mode hero heading */
+.app-shell[data-theme="light"] .hero h1 {
+  color: #17251c;
+}

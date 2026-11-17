@@ -12,6 +12,7 @@ export default function Navbar({
   search,
   setSearch,
   cartCount,
+  onCartClick,
   theme,
   setTheme
 }) {
@@ -53,13 +54,17 @@ export default function Navbar({
           )}
         </button>
 
-        <div className="relative">
-          <ShoppingCart size={25} />
+        <button
+  className="relative icon-button"
+  onClick={onCartClick}
+  aria-label="Open shopping cart"
+>
+  <ShoppingCart size={25} />
 
-          <span className="cart-badge">
-            {cartCount}
-          </span>
-        </div>
+  <span className="cart-badge">
+    {cartCount}
+  </span>
+</button>
       </div>
     </nav>
   );

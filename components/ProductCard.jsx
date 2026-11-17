@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Plus, Heart } from "lucide-react";
 
 export default function ProductCard({
@@ -5,18 +6,28 @@ export default function ProductCard({
   onSelect,
   onAdd
 }) {
+
+  const [isFavorite, setIsFavorite] = useState(false);
+
   return (
     <div
       className="product-card"
       onClick={() => onSelect(product)}
     >
       <button
-        className="favorite-button"
-        onClick={(e) => e.stopPropagation()}
-        aria-label={`Favorite ${product.name}`}
-      >
-        <Heart size={18} />
-      </button>
+  className="favorite-button"
+  onClick={(e) => {
+    e.stopPropagation();
+    setIsFavorite(!isFavorite);
+  }}
+  aria-label={`Favorite ${product.name}`}
+>
+  <Heart
+    size={18}
+    fill={isFavorite ? "red" : "none"}
+    color={isFavorite ? "red" : "currentColor"}
+  />
+</button>
 
       <div className="product-image">
         {product.image}

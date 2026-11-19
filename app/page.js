@@ -6,22 +6,20 @@ import { useMemo, useState } from "react";
 import Hero from "../components/Hero";
 import NutritionPanel from "../components/NutritionPanel";
 import RecipeSuggestions from "../components/RecipeSuggestions";
-import { products } from "../data/products";
-
 import CategoryList from "../components/CategoryList";
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
+
+import { products } from "../data/products";
+import { useCart } from "./context/CreateContext";
 
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState(products[0]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [search, setSearch] = useState("");
-
-  const [cart, setCart] = useState([]);
-  const [theme, setTheme] = useState("light");
+  const { cart, addToCart, removeFromCart, theme } = useCart();
   const [cartOpen, setCartOpen] = useState(false);
 
-  // Filter products
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
       const matchesCategory =
@@ -36,27 +34,19 @@ export default function Home() {
     });
   }, [selectedCategory, search]);
 
-  // Add products to cart
-  const addToCart = (product) => {
-    setCart((previousCart) => [...previousCart, product]);
-  };
-
-  // Calculate cart total
   const cartTotal = cart.reduce(
-    (total, item) => total + item.price,
+    (total, item) => total + Number(item.price),
     0
   );
 
   return (
     <div className="app-shell" data-theme={theme}>
       <Navbar
-        search={search}
-        setSearch={setSearch}
-        cartCount={cart.length}
-        onCartClick={() => setCartOpen(!cartOpen)}
-        theme={theme}
-        setTheme={setTheme}
-      />
+  search={search}
+  setSearch={setSearch}
+  cartCount={cart.length}
+  onCartClick={() => setCartOpen(!cartOpen)}
+/>
 
       {cartOpen && (
         <div className="panel m-5">
@@ -73,18 +63,11 @@ export default function Home() {
                   key={`${item.id || item.name}-${index}`}
                   className="flex justify-between items-center py-3 border-b"
                 >
-                  <span>
-                    {item.image} {item.name}
-                  </span>
-
+                  <span>{item.image} {item.name}</span>
                   <span>₹{item.price}</span>
 
                   <button
-                    onClick={() =>
-                      setCart((previousCart) =>
-                        previousCart.filter((_, i) => i !== index)
-                      )
-                    }
+                    onClick={() => removeFromCart(index)}
                     className="text-red-500"
                   >
                     Remove

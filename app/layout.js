@@ -1,4 +1,6 @@
+
 import "./globals.css";
+import { CartProvider } from "./context/CreateContext";
 
 export const metadata = {
   title: "Nutri-Cart | Smart Grocery Shopping",
@@ -9,7 +11,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <CartProvider>
+          {children}
+        </CartProvider>
+      </body>
     </html>
   );
 }

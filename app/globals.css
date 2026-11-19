@@ -216,11 +216,19 @@ body {
 }
 .favorite-button {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 7px;
   background: var(--surface);
   border-radius: 50%;
+  cursor: pointer;
+  color: var(--foreground);
 }
 
 .favorite-button:hover {

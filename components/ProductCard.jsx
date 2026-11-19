@@ -30,8 +30,11 @@ export default function ProductCard({
 </button>
 
       <div className="product-image">
-        {product.image}
-      </div>
+  <img
+    src={product.imageUrl}
+    alt={product.name}
+  />
+</div>
 
       <p className="text-xs text-green-500 font-semibold">
         {product.category}
